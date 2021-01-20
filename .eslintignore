@@ -1,0 +1,5 @@
+.git
+output/
+dist/
+node_modules/
+build

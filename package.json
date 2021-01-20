@@ -1,0 +1,55 @@
+{
+  "name": "akb-ts",
+  "version": "1.0.0",
+  "author": {
+    "name": "kaivean",
+    "email": "kaivean@outlook.com"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development tsc -w --project .",
+    "build": "tsc --project .",
+    "lint": "eslint src/**/*.ts",
+    "release_pre": "npm version patch",
+    "release": "rm -fr dist && npm run build && npm run lint && npm run test && npm publish",
+    "release_post": "git push origin master && git push origin --tags"
+  },
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "@types/fs-extra": "^9.0.6",
+    "@types/koa": "^2.11.6",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa__router": "^8.0.3",
+    "@types/lodash": "^4.14.167",
+    "@types/node": "^14.14.21",
+    "axios": "^0.18.0",
+    "cron": "^1.8.2",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.6",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-generic-session-file2": "0.0.2",
+    "koa-session": "^6.1.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "path-to-regexp": "^6.2.0",
+    "semver": "^5.3.0",
+    "send": "^0.17.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/eslint-parser": "^7.12.1",
+    "@babel/eslint-plugin": "^7.12.1",
+    "@ecomfe/eslint-config": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.17.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "main": "src/app.ts",
+  "module": "src/app.ts"
+}
