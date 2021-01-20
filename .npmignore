@@ -17,6 +17,7 @@ package-lock.json
 tsconfig.json
 tsconfig.src.json
 tslint.json
+.editorconfig
 
 webpack.*.config.ts
 karma.conf.ts

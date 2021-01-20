@@ -10,7 +10,7 @@
     "build": "tsc --project .",
     "lint": "eslint src/**/*.ts",
     "release_pre": "npm version patch",
-    "release": "rm -fr dist && npm run build && npm run lint && npm run test && npm publish",
+    "release": "rm -fr dist && npm run lint && npm run build && npm publish",
     "release_post": "git push origin master && git push origin --tags"
   },
   "dependencies": {
@@ -50,6 +50,6 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
-  "main": "src/app.ts",
-  "module": "src/app.ts"
+  "main": "dist/app.js",
+  "typings": "dist/app.d.ts"
 }

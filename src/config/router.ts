@@ -3,7 +3,7 @@
  * @author kaivean
  */
 
-import {Routes} from 'akb-ts';
+import {Routes} from '../interface';
 
 export default {
     enableDefaultRoutes: true,
@@ -34,7 +34,7 @@ export default {
             etag: true
         },
 
-        '/monitor'(app) {
+        '/monitor'() {
             return async ctx => {
                 ctx.body = '<!-- STATUS 200 -->';
             };
