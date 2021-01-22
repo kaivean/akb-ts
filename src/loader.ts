@@ -38,7 +38,8 @@ export async function loadConfigs(dir: string) {
                 config[name] = config[name].default || config[name];
             }
             catch (e) {
-                console.error('loadConfigs', name, e);
+                console.error('Load Configs Error', name);
+                throw e;
             }
         }
     }
@@ -68,7 +69,8 @@ export async function loadMiddlewares(config: {[propName: string]: any}, dir: st
                 middlewares.push(mod.default || mod);
             }
             catch (e) {
-                console.error('loadMiddlewares', name, e);
+                console.error('Load Middlewares Error', name);
+                throw e;
             }
         }
     }
@@ -79,6 +81,10 @@ export async function loadMiddlewares(config: {[propName: string]: any}, dir: st
 export async function loadComponents(config: {[propName: string]: any}, dir: string) {
     // console.log('config', config);
     const components = {} as {[propName: string]: (app: Koa) => any};
+    if (!config.component) {
+        return components;
+    }
+
     for (const item of config.component.components) {
         let name: string;
         let subfile: string;
@@ -101,7 +107,8 @@ export async function loadComponents(config: {[propName: string]: any}, dir: str
                 components[name] = mod.default || mod;
             }
             catch (e) {
-                console.error('loadComponents', name, subfile, e);
+                console.error('Load Components Error', name, subfile);
+                throw e;
             }
         }
     }
@@ -130,7 +137,8 @@ export async function loadCron(config: {[propName: string]: any}, dir: string, a
                 }).start();
             }
             catch (e) {
-                console.error('loadCron', name, cronStr, e);
+                console.error('Load Cron Error', name, cronStr);
+                throw e;
             }
         }
     }
