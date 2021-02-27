@@ -30,10 +30,13 @@ export async function loadConfigs(dir: string) {
                     // eslint-disable-next-line @typescript-eslint/no-require-imports
                     config[name] = require(filepath.replace('.ts', ''));
                 }
-                else {
+                else if (name.endsWith('.js')) {
                     name = name.replace('.js', '');
                     // eslint-disable-next-line @typescript-eslint/no-require-imports
                     config[name] = require(filepath.replace('.js', ''));
+                }
+                else {
+                    continue;
                 }
                 config[name] = config[name].default || config[name];
             }
