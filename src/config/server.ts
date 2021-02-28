@@ -17,4 +17,9 @@ export default {
      * @type {number}
      */
     port: 8080,
+
+    /**
+     * 部署时访问域名的子目录
+     */
+    webRoot: '/dataservice',
 };

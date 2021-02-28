@@ -138,13 +138,18 @@ export default class App extends EventEmitter {
             // 初始化路由导航
             const routeMatches = await loadControllers(config);
             app.use(async (ctx: AkbContext, next) => {
+                let realPath = ctx.path;
+                if (config.server.webRoot && ctx.path.startsWith(config.server.webRoot)) {
+                    realPath = ctx.path.replace(config.server.webRoot || '', '');
+                }
+                realPath = realPath || '/';
                 for (const routeMatch of routeMatches) {
                     // console.log('routeMatch', routeMatch.option.allowedMethods, ctx.method);
                     if (!(routeMatch.option.allowedMethods || []).includes(ctx.method.toLowerCase())) {
                         continue;
                     }
                     let regexp = routeMatch.regexp;
-                    let matches = regexp.exec(ctx.path);
+                    let matches = regexp.exec(realPath);
 
                     let keys = routeMatch.keys;
                     let params = {} as {[key: string]: string};
